@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',  // Ensure this matches the tag in routing and template
+  selector: 'app-root',  // Ensure this matches the tag in routing and template
   templateUrl: './home.page.html', 
   styleUrls: ['./home.page.scss'],
   standalone: true,

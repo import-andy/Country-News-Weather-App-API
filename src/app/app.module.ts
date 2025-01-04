@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; //  Added for ngModel support
 import { CommonModule } from '@angular/common'; // Added for *ngFor support
 
@@ -13,9 +12,8 @@ import { CommonModule } from '@angular/common'; // Added for *ngFor support
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
-    FormsModule, // ✅ Added
-    CommonModule // ✅ Added
+    FormsModule, // Added
+    CommonModule // Added
   ],
   bootstrap: [AppComponent]
 })
