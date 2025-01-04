@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
+  selector: 'app-home',  // Ensure this matches the tag in routing and template
+  templateUrl: './home.page.html', 
   styleUrls: ['./home.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]

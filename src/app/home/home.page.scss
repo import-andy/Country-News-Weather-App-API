@@ -25,3 +25,9 @@
 #container a {
   text-decoration: none;
 }
+
+ion-content {
+  --background: #ffffff;  /*  White background */
+  color: #000000;         /*   Black text for contrast */
+  padding: 16px;
+}
