@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-news',
@@ -14,7 +15,7 @@ export class NewsPage {
 
     ngOnInit() {
         const countryCode = this.route.snapshot.paramMap.get('country');
-        this.apiService.getNews(countryCode || '').subscribe((data: any) => {
+        this.apiService.getNews(countryCode || '').subscribe(data => {
             this.newsArticles = data.results;
         });
     }

@@ -1,0 +1,29 @@
+src/
+├── app/
+│   ├── home/
+│   │   ├── home.page.ts
+│   │   ├── home.page.html
+│   │   └── home.page.scss
+│   ├── countries/
+│   │   ├── countries.page.ts
+│   │   ├── countries.page.html
+│   │   └── countries.page.scss
+│   ├── weather/
+│   │   ├── weather.page.ts
+│   │   ├── weather.page.html
+│   │   └── weather.page.scss
+│   ├── settings/
+│   │   ├── settings.page.ts
+│   │   ├── settings.page.html
+│   │   └── settings.page.scss
+│   ├── services/
+│   │   └── api.service.ts
+│   ├── app.module.ts
+│   ├── app-routing.module.ts
+│   └── app.component.ts       ✅ **NEW FILE**
+│   └── app.component.html     ✅ **NEW FILE**
+├── assets/                  
+├── index.html
+├── main.ts
+├── theme/                    
+│   └── variables.scss

@@ -1,13 +1,18 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>countries</ion-title>
+      <ion-title>Countries</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">countries</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let country of countries">
+          <ion-thumbnail slot="start">
+              <img [src]="country.flags.png">
+          </ion-thumbnail>
+          <ion-label>{{ country.name.official }}</ion-label>
+          <ion-button (click)="viewNews(country.cca2)">News</ion-button>
+          <ion-button (click)="viewWeather(country.latlng[0], country.latlng[1])">Weather</ion-button>
+      </ion-item>
+  </ion-list>
 </ion-content>

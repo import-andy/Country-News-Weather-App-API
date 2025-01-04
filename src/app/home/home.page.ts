@@ -1,19 +1,16 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../services/api.service';
-import { NavController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
+  standalone: true,
+  imports: [IonicModule, FormsModule]  // Ensure IonicModule is imported here
 })
 export class HomePage {
     studentNumber = 'G00438837';
     countryName = '';
-
-    constructor(private apiService: ApiService, private navCtrl: NavController) {}
-
-    searchCountries() {
-        this.navCtrl.navigateForward(`/countries/${this.countryName}`);
-    }
 }
