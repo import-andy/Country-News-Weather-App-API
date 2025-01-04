@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { ApiService } from '../services/api.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
-  constructor() {}
+    studentNumber = 'G00438837';
+    countryName = '';
+
+    constructor(private apiService: ApiService, private navCtrl: NavController) {}
+
+    searchCountries() {
+        this.navCtrl.navigateForward(`/countries/${this.countryName}`);
+    }
 }

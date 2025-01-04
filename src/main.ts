@@ -1,14 +1,29 @@
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
-import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
+import { provideRouter, RouterModule, Routes } from '@angular/router';
+import { HomePage } from './app/home/home.page';
+import { SettingsPage } from './app/settings/settings.page';
+import { CountriesPage } from './app/countries/countries.page';
+import { environment } from './environments/environment';  // Importing environment for production check
+import { defineCustomElements } from '@ionic/pwa-elements/loader';  // Importing PWA elements
 
-import { routes } from './app/app.routes';
-import { AppComponent } from './app/app.component';
+if (environment.production) {
+  enableProdMode();  // Enabling production mode if it’s a production environment
+}
 
-bootstrapApplication(AppComponent, {
+// Defining application routes
+const appRoutes: Routes = [
+  { path: '', component: HomePage },
+  { path: 'settings', component: SettingsPage },
+  { path: 'countries', component: CountriesPage },
+];
+
+bootstrapApplication(HomePage, {
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    provideIonicAngular(),
-    provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideRouter(appRoutes),
+    importProvidersFrom(RouterModule),
   ],
 });
+
+defineCustomElements(window);  // Initializing the PWA elements
+
