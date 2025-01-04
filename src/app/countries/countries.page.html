@@ -10,9 +10,11 @@
           <ion-thumbnail slot="start">
               <img [src]="country.flags.png">
           </ion-thumbnail>
-          <ion-label>{{ country.name.official }}</ion-label>
-          <ion-button (click)="viewNews(country.cca2)">News</ion-button>
-          <ion-button (click)="viewWeather(country.latlng[0], country.latlng[1])">Weather</ion-button>
+          <ion-label>
+              <h2>{{ country.name.official }}</h2>
+          </ion-label>
+          <ion-button expand="block" (click)="viewNews(country.cca2)">News</ion-button>
+          <ion-button expand="block" (click)="viewWeather(country.latlng[0], country.latlng[1])">Weather</ion-button>
       </ion-item>
   </ion-list>
 </ion-content>
