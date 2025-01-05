@@ -1,33 +1,4 @@
-repo: https://github.com/import-andy/G00438837.git
+repo: https://github.com/import-andy/Country-News-Weather-App-API.git
 student number: G00438837
 api openweather: b6c07c72d5a9de4183ec0c52cd33c12c
 api newsdata: pub_64387a6b4a6a4541a4878d4e012382158b750
-
-structure:
-src/
-├── app/
-│   ├── home/
-│   │   ├── home.page.ts
-│   │   ├── home.page.html
-│   │   └── home.page.scss
-│   ├── countries/
-│   │   ├── countries.page.ts
-│   │   ├── countries.page.html
-│   │   └── countries.page.scss
-│   ├── settings/
-│   │   ├── settings.page.ts
-│   │   ├── settings.page.html
-│   │   └── settings.page.scss
-│   ├── news/
-│   │   ├── news.page.ts
-│   │   ├── news.page.html
-│   │   └── news.page.scss
-│   ├── weather/
-│   │   ├── weather.page.ts
-│   │   ├── weather.page.html
-│   │   └── weather.page.scss
-│   ├── services/
-│   │   └── api.service.ts
-│   ├── app.routes.ts
-│   ├── app.component.ts
-│   └── app.component.html
