@@ -1,14 +1,27 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title>Home Page</ion-title>
+    <ion-title>{{ studentNumber }}</ion-title>
+    <ion-button slot="end" fill="clear" (click)="onSettings()">
+      <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <ion-item>
-      <ion-label position="floating">Enter Country Name</ion-label>
-      <ion-input [(ngModel)]="countryName"></ion-input>
+    <ion-input 
+      label="Country Name" 
+      labelPlacement="floating"
+      [(ngModel)]="searchText"
+      type="text">
+    </ion-input>
   </ion-item>
 
-  <ion-button expand="block" (click)="searchCountries()">Search</ion-button>
-</ion-content>
+  <ion-button 
+    expand="block" 
+    class="ion-margin-top"
+    (click)="onSearch()"
+    [disabled]="!searchText.trim()">
+    Search
+  </ion-button>
+</ion-content> 

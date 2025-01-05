@@ -1,18 +1,16 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title>Weather</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Weather - {{ countryName }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-card *ngIf="weatherData">
-      <ion-card-header>
-          <ion-card-title>{{ weatherData.name }}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-          <img [src]="'https://openweathermap.org/img/wn/' + weatherData.weather[0].icon + '@2x.png'">
-          <p>{{ weatherData.weather[0].description }}</p>
-          <p>Temperature: {{ weatherData.main.temp }}°C</p>
-      </ion-card-content>
-  </ion-card>
+<ion-content class="ion-padding">
+  <div class="weather-container" *ngIf="weather">
+    <ion-img [src]="getWeatherIconUrl(weather.weather[0].icon)" class="weather-icon"></ion-img>
+    <h2>{{ weather.weather[0].description }}</h2>
+    <h1>{{ weather.main.temp }}{{ getTemperatureUnit() }}</h1>
+  </div>
 </ion-content>
