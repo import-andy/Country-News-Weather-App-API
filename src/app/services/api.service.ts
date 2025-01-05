@@ -1,30 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { throwError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+
+export interface Country {
+  name: {
+    official: string;
+  };
+  cca2: string;
+  capitalInfo: {
+    latlng?: [number, number];
+  };
+}
+
+export interface NewsResponse {
+  results: Array<{
+    title: string;
+    description: string;
+    image_url?: string;
+  }>;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-    private restCountriesUrl = 'https://restcountries.com/v3.1/name/';
-    private newsApiUrl = 'https://newsdata.io/api/1/latest';
-    private weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather';
+  private readonly NEWS_API_KEY = 'pub_64387a6b4a6a4541a4878d4e012382158b750';
 
-    private newsApiKey = 'pub_64387a6b4a6a4541a4878d4e012382158b750';
-    private weatherApiKey = 'b6c07c72d5a9de4183ec0c52cd33c12c';
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) {}
+  searchCountries(searchText: string): Observable<Country[]> {
+    return this.http.get<Country[]>(`https://restcountries.com/v3.1/name/${searchText}`);
+  }
 
-    getCountries(name: string): Observable<any> {
-        return this.http.get(`${this.restCountriesUrl}${name}`);
-    }
-
-    getNews(countryCode: string): Observable<any> {
-        return this.http.get(`${this.newsApiUrl}?apikey=${this.newsApiKey}&country=${countryCode}`);
-    }
-
-    getWeather(lat: string, lon: string, unit: string = 'metric'): Observable<any> {
-        return this.http.get(`${this.weatherApiUrl}?lat=${lat}&lon=${lon}&units=${unit}&appid=${this.weatherApiKey}`);
-    }
+  getNews(countryCode: string): Observable<NewsResponse> {
+    return this.http.get<NewsResponse>(
+      `https://newsdata.io/api/1/latest?apikey=${this.NEWS_API_KEY}&country=${countryCode}`
+    );
+  }
 }

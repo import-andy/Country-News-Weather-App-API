@@ -1,23 +1,38 @@
-import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonRadioGroup, IonRadio, IonBackButton, IonButtons } from '@ionic/angular/standalone';
+import { StorageService } from '../services/storage.service';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonRadioGroup,
+    IonRadio,
+    IonBackButton,
+    IonButtons,
+    FormsModule
+  ]
 })
-export class SettingsPage {
-    unit: string = 'metric';
+export class SettingsPage implements OnInit {
+  selectedUnit = 'metric';
 
-    constructor(private navCtrl: NavController) {}
+  constructor(private storageService: StorageService) {}
 
-    saveSettings() {
-        localStorage.setItem('unit', this.unit);
-        this.navCtrl.navigateBack('/');
-    }
-}
+  async ngOnInit() {
+    this.selectedUnit = await this.storageService.getUnit();
+  }
+
+  async onUnitChange(event: any) {
+    await this.storageService.setUnit(event.detail.value);
+  }
+} 

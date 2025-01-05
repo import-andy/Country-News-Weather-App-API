@@ -1,39 +1,77 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ApiService } from '../services/api.service';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService, Country } from '../services/api.service';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, IonButton, IonBackButton, IonButtons, IonImg } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-countries',
   templateUrl: './countries.page.html',
   styleUrls: ['./countries.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [
+    CommonModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonButton,
+    IonBackButton,
+    IonButtons,
+    IonImg
+  ]
 })
-export class CountriesPage {
-    countries: any[] = [];
+export class CountriesPage implements OnInit {
+  countries: Country[] = [];
 
-    constructor(
-        private route: ActivatedRoute,
-        private apiService: ApiService,
-        private navCtrl: NavController
-    ) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private apiService: ApiService
+  ) {}
 
-    ngOnInit() {
-        const countryName = this.route.snapshot.paramMap.get('country');
-        this.apiService.getCountries(countryName || '').subscribe(data => {
-            this.countries = data;
-        });
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const searchText = params['search'];
+      if (searchText) {
+        this.searchCountries(searchText);
+      }
+    });
+  }
+
+  searchCountries(searchText: string) {
+    this.apiService.searchCountries(searchText).subscribe({
+      next: (data: Country[]) => {
+        this.countries = data;
+      },
+      error: (error) => {
+        console.error('Error fetching countries:', error);
+      }
+    });
+  }
+
+  onNewsClick(country: Country) {
+    this.router.navigate(['/news'], {
+      queryParams: { 
+        countryCode: country.cca2.toLowerCase(),
+        countryName: country.name.official
+      }
+    });
+  }
+
+  onWeatherClick(country: Country) {
+    if (country.capitalInfo.latlng) {
+      const [lat, lon] = country.capitalInfo.latlng;
+      this.router.navigate(['/weather'], {
+        queryParams: { 
+          lat,
+          lon,
+          countryName: country.name.official
+        }
+      });
     }
-
-    viewNews(countryCode: string) {
-        this.navCtrl.navigateForward(`/news/${countryCode}`);
-    }
-
-    viewWeather(lat: string, lon: string) {
-        this.navCtrl.navigateForward(`/weather/${lat}/${lon}`);
-    }
-}
+  }
+} 

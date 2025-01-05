@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+      <ion-label>Select Unit</ion-label>
+      <ion-select [(ngModel)]="unit">
+          <ion-select-option value="metric">Metric</ion-select-option>
+          <ion-select-option value="imperial">Imperial</ion-select-option>
+      </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="saveSettings()">Save Settings</ion-button>
+</ion-content>

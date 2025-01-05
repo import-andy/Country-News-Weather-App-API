@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Countries</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let country of countries">
+          <ion-thumbnail slot="start">
+              <img [src]="country.flags.png">
+          </ion-thumbnail>
+          <ion-label>
+              <h2>{{ country.name.official }}</h2>
+          </ion-label>
+          <ion-button expand="block" (click)="viewNews(country.cca2)">News</ion-button>
+          <ion-button expand="block" (click)="viewWeather(country.latlng[0], country.latlng[1])">Weather</ion-button>
+      </ion-item>
+  </ion-list>
+</ion-content>

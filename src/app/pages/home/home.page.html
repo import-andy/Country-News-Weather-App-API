@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Home Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+      <ion-label position="floating">Enter Country Name</ion-label>
+      <ion-input [(ngModel)]="countryName"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="searchCountries()">Search</ion-button>
+</ion-content>

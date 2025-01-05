@@ -28,6 +28,6 @@ src/
 │   │   └── weather.page.scss
 │   ├── services/
 │   │   └── api.service.ts
-│   ├── app-routing.module.ts
+│   ├── app.routes.ts
 │   ├── app.component.ts
 │   └── app.component.html
